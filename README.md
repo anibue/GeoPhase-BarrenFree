@@ -1,5 +1,9 @@
 # MindSpore：基于几何相的抗噪声量子计算
 
+## 项目概览
+
+本项目提供一个可执行的最小研究骨架，用于验证“基于几何相的抗噪声量子计算：在损失表达性的前提下克服变分量子电路中的贫瘠高原问题”的方法假设。当前实现使用纯 Python 代码模拟几何相计算、噪声通道和训练流程，便于在 MindSpore/MindQuantum 生态落地前快速迭代思想与实验设计。
+
 ## 研究主题
 
 本文档围绕“基于几何相的抗噪声量子计算：在损失表达性的前提下克服变分量子电路中的贫瘠高原问题”展开，旨在提供一个可执行的研究思路与落地框架，适配 MindSpore / MindQuantum 生态。
@@ -26,7 +30,7 @@
    - 定义几何相相关的损失项：
      - 通过干涉测量或参数回路来估计几何相。
    - 总损失：
-     
+
      \[
      \mathcal{L}(\theta) = \mathcal{L}_{task}(\theta) + \lambda \cdot \mathcal{L}_{geo}(\theta)
      \]
@@ -42,15 +46,24 @@
 ## MindSpore / MindQuantum 实现建议
 
 - **模块划分**
-  - `circuits/`：构建带几何相路径的参数化电路。
-  - `losses/`：实现几何相损失项与任务损失组合。
-  - `noise/`：定义噪声通道与噪声模拟。
-  - `train/`：训练与评估流程。
+  - `geophase/circuits.py`：构建带几何相路径的参数化电路。
+  - `geophase/losses.py`：实现几何相损失项与任务损失组合。
+  - `geophase/noise.py`：定义噪声通道与噪声模拟。
+  - `geophase/train.py`：训练与评估流程。
 
 - **关键实现点**
   - 用 MindQuantum 的 `Circuit` 构建闭合参数路径。
   - 通过参数回路估计几何相（如 Berry phase）。
   - 在 MindSpore 中实现联合优化目标。
+
+## 运行与测试
+
+1. 安装依赖（当前实现仅依赖 Python 标准库）。
+2. 运行测试：
+
+```bash
+python -m unittest
+```
 
 ## 可验证指标
 
