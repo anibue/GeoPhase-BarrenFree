@@ -1,0 +1,10 @@
+[project]
+name = "geophase"
+version = "0.1.0"
+description = "Geometric-phase inspired utilities for noise-robust VQC research."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+
+[tool.unittest]
+
